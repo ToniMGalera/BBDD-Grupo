@@ -1,20 +1,34 @@
 CREATE DATABASE masonescompany;
 
+--proveedores
+CREATE TABLE Proveedores (
+    id_proveedor CHAR(4), 
+    nombre NVARCHAR(100)NOT NULL,
+    correo NVARCHAR (100),
+    telefono NVARCHAR (100),
+    direccion NVARCHAR (255),
+    PRIMARY KEY (ID));
+
+--tabla productos
+CREATE TABLE Productos (
+  id_producto INT,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion BLOB o TEXT,
+  precio DECIMAL(10,2) NOT NULL,
+  stock INT NOT NULL,
+  proveedor CHAR (4),
+  PRIMARY KEY (id_producto)
+  FOREIGN KEY (proveedor) REFERENCES Proveedores(id_proveedor)
+  );
+
+--clientes
 CREATE TABLE Clientes (
   id_cliente INT PRIMARY KEY,
   nombre VARCHAR(50) NOT NULL,
   apellido VARCHAR(50) NOT NULL,
-  dirección VARCHAR(100) NOT NULL,
+  direccion VARCHAR(100) NOT NULL,
   correo VARCHAR(100) NOT NULL,
   telefono VARCHAR(20) NOT NULL
-);
---tabla productos
-CREATE TABLE Productos (
-  id_producto INT PRIMARY KEY,
-  nombre VARCHAR(50) NOT NULL,
-  descripción TEXT NOT NULL,
-  precio DECIMAL(10,2) NOT NULL,
-  stock INT NOT NULL
 );
 --ventas
 CREATE TABLE Ventas (
