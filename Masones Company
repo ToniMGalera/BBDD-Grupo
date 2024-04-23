@@ -1,0 +1,60 @@
+CREATE DATABASE masonescompany;
+
+CREATE TABLE Clientes (
+  id_cliente INT PRIMARY KEY,
+  nombre VARCHAR(50) NOT NULL,
+  apellido VARCHAR(50) NOT NULL,
+  dirección VARCHAR(100) NOT NULL,
+  correo VARCHAR(100) NOT NULL,
+  telefono VARCHAR(20) NOT NULL
+);
+--tabla productos
+CREATE TABLE Productos (
+  id_producto INT PRIMARY KEY,
+  nombre VARCHAR(50) NOT NULL,
+  descripción TEXT NOT NULL,
+  precio DECIMAL(10,2) NOT NULL,
+  stock INT NOT NULL
+);
+--ventas
+CREATE TABLE Ventas (
+  id_venta INT PRIMARY KEY,
+  id_cliente INT NOT NULL,
+  id_producto INT NOT NULL,
+  fecha_venta DATE NOT NULL,
+  cantidad INT NOT NULL,
+  precio_venta DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+  FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
+);
+--pedidos
+CREATE TABLE Pedidos (
+  id_pedido INT PRIMARY KEY,
+  id_cliente INT NOT NULL,
+  fecha_pedido DATE NOT NULL,
+  total_pedido DECIMAL(10,2) NOT NULL,
+  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
+);
+INSERT INTO Clientes (id_cliente, nombre, apellido, dirección, correo, telefono)
+VALUES
+  (1, 'Juan', 'Pérez', 'Calle 1, 123', 'juan.perez@example.com', '123456789'),
+  (2, 'María', 'García', 'Calle 2, 456', 'maria.garcia@example.com', '987654321'),
+  (3, 'José', 'Rodríguez', 'Calle 3, 789', 'jose.rodriguez@example.com', '555123456');
+
+INSERT INTO Productos (id_producto, nombre, descripción, precio, stock)
+VALUES
+  (1, 'Televisor', 'Televisor 4K', 500.00, 10),
+  (2, 'Computadora', 'Computadora portátil', 800.00, 5),
+  (3, 'Tablet', 'Tablet Android', 300.00, 15);
+
+INSERT INTO Ventas (id_venta, id_cliente, id_producto, fecha_venta, cantidad, precio_venta)
+VALUES
+  (1, 1, 1, '2022-01-01', 2, 1000.00),
+  (2, 2, 2, '2022-01-15', 1, 800.00),
+  (3, 3, 3, '2022-02-01', 3, 900.00);
+
+INSERT INTO Pedidos (id_pedido, id_cliente, fecha_pedido, total_pedido)
+VALUES
+  (1, 1, '2022-01-01', 2000.00),
+  (2, 2, '2022-01-15', 1200.00),
+  (3, 3, '2022-02-01', 2700.00);
