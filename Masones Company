@@ -1,74 +1,75 @@
 CREATE DATABASE masonescompany;
+use masonescompany;
 
 --proveedores
 CREATE TABLE Proveedores (
-    id_proveedor CHAR(4), 
-    nombre NVARCHAR(100)NOT NULL,
-    correo NVARCHAR (100),
-    telefono NVARCHAR (100),
+    id_proveedor CHAR(5), 
+    nombre NVARCHAR(100) NOT NULL,
+    correo NVARCHAR (100) UNIQUE NOT NULL,
+    telefono VARCHAR (14),
     direccion NVARCHAR (255),
-    PRIMARY KEY (ID));
+    PRIMARY KEY (id_proveedor));
 
 --tabla productos
 CREATE TABLE Productos (
   id_producto INT,
-  nombre VARCHAR(100) NOT NULL,
-  descripcion BLOB o TEXT,
+  nombre NVARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  foto BLOB,
   precio DECIMAL(10,2) NOT NULL,
   stock INT NOT NULL,
-  proveedor CHAR (4),
-  PRIMARY KEY (id_producto)
-  FOREIGN KEY (proveedor) REFERENCES Proveedores(id_proveedor)
-  );
+  proveedor CHAR (5),
+  PRIMARY KEY (id_producto),
+  FOREIGN KEY (proveedor) REFERENCES Proveedores(id_proveedor) ON DELETE CASCADE ON UPDATE CASCADE);
 
 --clientes
 CREATE TABLE Clientes (
-  id_cliente INT PRIMARY KEY,
-  nombre VARCHAR(50) NOT NULL,
-  apellido VARCHAR(50) NOT NULL,
-  direccion VARCHAR(100) NOT NULL,
-  correo VARCHAR(100) NOT NULL,
-  telefono VARCHAR(20) NOT NULL
-);
+  id_cliente INT,
+  nombre NVARCHAR(100) NOT NULL,
+  apellido NVARCHAR(100) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  correo VARCHAR(100) UNIQUE NOT NULL,
+  telefono VARCHAR(14) NOT NULL),
+  responsable NVARCHAR (100),
+  PRIMARY KEY (id_cliente);
+
 --ventas
 CREATE TABLE Ventas (
-  id_venta INT PRIMARY KEY,
+  id_venta INT,
   id_cliente INT NOT NULL,
   id_producto INT NOT NULL,
   fecha_venta DATE NOT NULL,
   cantidad INT NOT NULL,
   precio_venta DECIMAL(10,2) NOT NULL,
-  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
-  FOREIGN KEY (id_producto) REFERENCES Productos(id_producto)
-);
+  PRIMARY KEY (id_venta));
+  FOREIGN KEY (id_cliente) REFERENCES Clientes (id_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE ON UPDATE CASCADE;
+
 --pedidos
 CREATE TABLE Pedidos (
-  id_pedido INT PRIMARY KEY,
+  id_pedido INT,
   id_cliente INT NOT NULL,
   fecha_pedido DATE NOT NULL,
   total_pedido DECIMAL(10,2) NOT NULL,
-  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente)
-);
+  PRIMARY KEY (id_pedido),
+  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente) ON DELETE CASCADE ON UPDATE CASCADE);
+
+
 INSERT INTO Clientes (id_cliente, nombre, apellido, dirección, correo, telefono)
 VALUES
   (1, 'Juan', 'Pérez', 'Calle 1, 123', 'juan.perez@example.com', '123456789'),
-  (2, 'María', 'García', 'Calle 2, 456', 'maria.garcia@example.com', '987654321'),
-  (3, 'José', 'Rodríguez', 'Calle 3, 789', 'jose.rodriguez@example.com', '555123456');
+
 
 INSERT INTO Productos (id_producto, nombre, descripción, precio, stock)
 VALUES
   (1, 'Televisor', 'Televisor 4K', 500.00, 10),
-  (2, 'Computadora', 'Computadora portátil', 800.00, 5),
-  (3, 'Tablet', 'Tablet Android', 300.00, 15);
+
 
 INSERT INTO Ventas (id_venta, id_cliente, id_producto, fecha_venta, cantidad, precio_venta)
 VALUES
   (1, 1, 1, '2022-01-01', 2, 1000.00),
-  (2, 2, 2, '2022-01-15', 1, 800.00),
-  (3, 3, 3, '2022-02-01', 3, 900.00);
+
 
 INSERT INTO Pedidos (id_pedido, id_cliente, fecha_pedido, total_pedido)
 VALUES
   (1, 1, '2022-01-01', 2000.00),
-  (2, 2, '2022-01-15', 1200.00),
-  (3, 3, '2022-02-01', 2700.00);
