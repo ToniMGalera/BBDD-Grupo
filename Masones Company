@@ -12,10 +12,10 @@ CREATE TABLE Proveedores (
 
 --tabla productos
 CREATE TABLE Productos (
-  id_producto INT,
+  id_producto INT AUTO_INCREMENT,
   nombre NVARCHAR(100) NOT NULL,
   descripcion TEXT,
-  foto BLOB,
+  foto VARCHAR (255),
   precio DECIMAL(10,2) NOT NULL,
   stock INT NOT NULL,
   proveedor CHAR (5),
@@ -24,35 +24,48 @@ CREATE TABLE Productos (
 
 --clientes
 CREATE TABLE Clientes (
-  id_cliente INT,
+  id_cliente INT AUTO_INCREMENT,
   nombre NVARCHAR(100) NOT NULL,
-  apellido NVARCHAR(100) NOT NULL,
+  apellido_1 NVARCHAR(100) NOT NULL,
+  apellido_2 NVARCHAR(100) NOT NULL,
   direccion VARCHAR(255) NOT NULL,
   correo VARCHAR(100) UNIQUE NOT NULL,
-  telefono VARCHAR(14) NOT NULL),
+  telefono VARCHAR(14) NOT NULL,
   responsable NVARCHAR (100),
-  PRIMARY KEY (id_cliente);
-
---ventas
-CREATE TABLE Ventas (
-  id_venta INT,
-  id_cliente INT NOT NULL,
-  id_producto INT NOT NULL,
-  fecha_venta DATE NOT NULL,
-  cantidad INT NOT NULL,
-  precio_venta DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (id_venta));
-  FOREIGN KEY (id_cliente) REFERENCES Clientes (id_cliente) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE ON UPDATE CASCADE;
+  PRIMARY KEY (id_cliente));
 
 --pedidos
 CREATE TABLE Pedidos (
-  id_pedido INT,
-  id_cliente INT NOT NULL,
-  fecha_pedido DATE NOT NULL,
-  total_pedido DECIMAL(10,2) NOT NULL,
+  id_pedido INT AUTO_INCREMENT,
+  fecha_pedido DATE,
+  total_pedido DECIMAL(10,2),
+  estado_pedido ENUM('pendiente', 'acceptado', 'en_preparación', 'enviado', 'entregado', 'cancelado'),
+  cliente INT,
   PRIMARY KEY (id_pedido),
-  FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente) ON DELETE CASCADE ON UPDATE CASCADE);
+  FOREIGN KEY (cliente) REFERENCES Clientes(id_cliente));
+
+CREATE TABLE Devoluciones (
+  id_devolucion INT AUTO_INCREMENT,
+  fecha_devolucion DATE,
+  estado_devolucion ENUM('pendiente', 'enviado', 'por_recibir', 'entregado', 'cancelado', 'en_revision', 'acceptado'),
+  cliente INT,
+  pedido,
+  PRIMARY KEY (id_devolucion),
+  FOREIGN KEY (cliente) REFERENCES Clientes(id_cliente)),
+  FOREIGN KEY (pedido) REFERENCES Pedidos(id_pedido));
+
+
+--detalles pedidos
+CREATE TABLE DetallesPedidos (
+  id_detalle_pedido INT AUTO_INCREMENT,
+  pedido_id INT,
+  producto_id INT,
+  cantidad INT,
+  precio_unitario DECIMAL(10,2),
+  subtotal DECIMAL(10,2),
+  PRIMARY KEY (id_detalle_pedido),
+  FOREIGN KEY (pedido_id) REFERENCES Pedidos(id_pedido),
+  FOREIGN KEY (producto_id) REFERENCES Productos(id_producto));
 
 
 INSERT INTO Clientes (id_cliente, nombre, apellido, dirección, correo, telefono)
