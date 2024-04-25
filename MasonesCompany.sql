@@ -132,6 +132,7 @@ VALUES
   ('2024-09-01', 180.99, 'entregado', 8),
   ('2024-10-01', 250.00, 'aceptado', 9);
 SELECT * FROM pedidos;
+SELECT * FROM pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'aceptado';
 
 
 INSERT INTO Devoluciones (fecha_devolucion, estado_devolucion, cliente, pedido)
@@ -147,6 +148,8 @@ VALUES
   ('2024-09-01', 'En proceso', 9, 9),
   ('2024-10-01', 'Rechazado', 10, 10);
   SELECT * FROM devoluciones;
+  SELECT * FROM devoluciones WHERE estado_devolucion = 'Rechazado';
+
 
 
   INSERT INTO DetallesPedidos (pedido_id, producto_id, cantidad, precio_unitario, subtotal)
