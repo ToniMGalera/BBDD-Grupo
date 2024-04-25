@@ -51,8 +51,8 @@ CREATE TABLE Devoluciones (
   cliente INT,
   pedido,
   PRIMARY KEY (id_devolucion),
-  FOREIGN KEY (cliente) REFERENCES Clientes(id_cliente)),
-  FOREIGN KEY (pedido) REFERENCES Pedidos(id_pedido));
+  FOREIGN KEY (cliente) REFERENCES Clientes(id_cliente) ON DELETE CASCADE ON UPDATE CASCADE),
+  FOREIGN KEY (pedido) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE ON UPDATE CASCADE);
 
 
 --detalles pedidos
@@ -64,7 +64,7 @@ CREATE TABLE DetallesPedidos (
   precio_unitario DECIMAL(10,2),
   subtotal DECIMAL(10,2),
   PRIMARY KEY (id_detalle_pedido),
-  FOREIGN KEY (pedido_id) REFERENCES Pedidos(id_pedido),
+  FOREIGN KEY (pedido_id) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE ON UPDATE CASCADE),
   FOREIGN KEY (producto_id) REFERENCES Productos(id_producto));
 
 
