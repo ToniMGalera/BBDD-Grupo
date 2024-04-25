@@ -102,7 +102,7 @@ VALUES
   ('Lucía', 'Fernández', 'García', 'Calle 9, 678', 'lucia.fernandez@example.com', '777777777', 'Toni'),
   ('Jorge', 'López', 'Gómez', 'Calle 10, 901', 'jorge.lopez@example.com', '888888888', 'Toni');
 SELECT * FROM clientes;
-
+SELECT * FROM clientes WHERE apellido_1 LIKE '%García%' OR apellido_2 LIKE '%García%';
 
 INSERT INTO Productos (nombre, descripción, precio, stock, proveedor)
 VALUES
@@ -117,6 +117,7 @@ VALUES
   ('Gafas de realidad virtual', 'Gafas de realidad virtual con pantalla de 5 pulgadas', 200.75, 8, 7),
   ('Tableta para niños', 'Tableta para niños con juegos educativos', 180.99, 15, 8);
 SELECT * FROM productos;
+SELECT SUM(precio) AS total_de_precios FROM productos;
 
 
 INSERT INTO Pedidos (fecha_pedido, total_pedido, estado_pedido, cliente)
@@ -166,3 +167,4 @@ VALUES
   (10, 10, 3, 100.00, 300.00),
   (11, 11, 4, 200.00, 800.00);
   SELECT * FROM detallespedidos;
+  SELECT subtotal FROM detallespedidos;
