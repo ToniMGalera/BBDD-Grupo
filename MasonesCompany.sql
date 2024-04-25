@@ -87,7 +87,8 @@ VALUES
   ( 'Lenovo Group', 'lenovo@example.com', '888888888', 'Calle 10, 901');
 
 SELECT * FROM proveedores;
-
+UPDATE Proveedores SET correo = 'newapple@example.com' WHERE nombre = 'Apple Inc.';
+UPDATE Proveedores SET direccion = 'Avenida 3, 789' WHERE nombre = 'LG Electronics';
 
 INSERT INTO Clientes (nombre, apellido_1, apellido_2, dirección, correo, telefono, responsable)
 VALUES
@@ -103,6 +104,8 @@ VALUES
   ('Jorge', 'López', 'Gómez', 'Calle 10, 901', 'jorge.lopez@example.com', '888888888', 'Toni');
 SELECT * FROM clientes;
 SELECT * FROM clientes WHERE apellido_1 LIKE '%García%' OR apellido_2 LIKE '%García%';
+UPDATE Clientes SET telefono = '555555555' WHERE correo = 'juan.perez@example.com';
+DELETE FROM Clientes WHERE apellido_2 = 'González';
 
 INSERT INTO Productos (nombre, descripción, precio, stock, proveedor)
 VALUES
@@ -118,7 +121,8 @@ VALUES
   ('Tableta para niños', 'Tableta para niños con juegos educativos', 180.99, 15, 8);
 SELECT * FROM productos;
 SELECT SUM(precio) AS total_de_precios FROM productos;
-
+UPDATE Productos SET precio = 550.00 WHERE nombre = 'Televisor';
+UPDATE Productos SET stock = 20 WHERE descripción LIKE '%Laptop%';
 
 INSERT INTO Pedidos (fecha_pedido, total_pedido, estado_pedido, cliente)
 VALUES
@@ -134,7 +138,7 @@ VALUES
   ('2024-10-01', 250.00, 'aceptado', 9);
 SELECT * FROM pedidos;
 SELECT * FROM pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'aceptado';
-
+UPDATE Pedidos SET total_pedido = 1100.00, estado_pedido = 'aceptado' WHERE id_pedido = 1;
 
 INSERT INTO Devoluciones (fecha_devolucion, estado_devolucion, cliente, pedido)
 VALUES
@@ -150,8 +154,7 @@ VALUES
   ('2024-10-01', 'pendiente', 10, 10);
   SELECT * FROM devoluciones;
   SELECT * FROM devoluciones WHERE estado_devolucion = 'por_recibir';
-
-
+  UPDATE Devoluciones SET estado_devolucion = 'entregado' WHERE id_devolucion = 2;
 
   INSERT INTO DetallesPedidos (pedido_id, producto_id, cantidad, precio_unitario, subtotal)
   VALUES
@@ -168,3 +171,5 @@ VALUES
   (11, 11, 4, 200.00, 800.00);
   SELECT * FROM detallespedidos;
   SELECT subtotal FROM detallespedidos;
+  UPDATE DetallesPedidos SET cantidad = 5 WHERE pedido_id = 2 AND producto_id = 2;
+  DELETE FROM DetallesPedidos WHERE id_detalle_pedido = 3;
