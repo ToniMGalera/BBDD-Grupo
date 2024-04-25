@@ -86,6 +86,9 @@ VALUES
   ( 'Toshiba Corporation', 'toshiba@example.com', '777777777', 'Calle 9, 678'),
   ( 'Lenovo Group', 'lenovo@example.com', '888888888', 'Calle 10, 901');
 
+SELECT * FROM proveedores;
+
+
 INSERT INTO Clientes (nombre, apellido_1, apellido_2, dirección, correo, telefono, responsable)
 VALUES
   ('Juan', 'Pérez', 'González', 'Calle 1, 123', 'juan.perez@example.com', '123456789', 'Toni'),
@@ -98,6 +101,7 @@ VALUES
   ('Sofía', 'Gómez', 'Hernández', 'Calle 8, 345', 'sofia.gomez@example.com', '666666666', 'Toni'),
   ('Lucía', 'Fernández', 'García', 'Calle 9, 678', 'lucia.fernandez@example.com', '777777777', 'Toni'),
   ('Jorge', 'López', 'Gómez', 'Calle 10, 901', 'jorge.lopez@example.com', '888888888', 'Toni');
+SELECT * FROM clientes;
 
 
 INSERT INTO Productos (nombre, descripción, precio, stock, proveedor)
@@ -112,6 +116,8 @@ VALUES
   ('Reproductor de música', 'Reproductor de música con almacenamiento de 64 GB', 150.50, 12, 6),
   ('Gafas de realidad virtual', 'Gafas de realidad virtual con pantalla de 5 pulgadas', 200.75, 8, 7),
   ('Tableta para niños', 'Tableta para niños con juegos educativos', 180.99, 15, 8);
+SELECT * FROM productos;
+
 
 INSERT INTO Pedidos (fecha_pedido, total_pedido, estado_pedido, cliente)
 VALUES
@@ -125,6 +131,8 @@ VALUES
   ('2024-08-01', 200.75, 'cancelado', 4),
   ('2024-09-01', 180.99, 'entregado', 8),
   ('2024-10-01', 250.00, 'aceptado', 9);
+SELECT * FROM pedidos;
+
 
 INSERT INTO Devoluciones (fecha_devolucion, estado_devolucion, cliente, pedido)
 VALUES
@@ -138,7 +146,9 @@ VALUES
   ('2024-08-01', 'Aceptado', 8, 8),
   ('2024-09-01', 'En proceso', 9, 9),
   ('2024-10-01', 'Rechazado', 10, 10);
-  
+  SELECT * FROM devoluciones;
+
+
   INSERT INTO DetallesPedidos (pedido_id, producto_id, cantidad, precio_unitario, subtotal)
   VALUES
   (1, 1, 2, 500.00, 1000.00),
@@ -152,3 +162,4 @@ VALUES
   (9, 9, 2, 300.00, 600.00),
   (10, 10, 3, 100.00, 300.00),
   (11, 11, 4, 200.00, 800.00);
+  SELECT * FROM detallespedidos;
