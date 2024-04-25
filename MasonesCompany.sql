@@ -138,18 +138,18 @@ SELECT * FROM pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'acep
 
 INSERT INTO Devoluciones (fecha_devolucion, estado_devolucion, cliente, pedido)
 VALUES
-  ('2024-01-01', 'Rechazado', 1, 1),
-  ('2024-02-01', 'Aceptado', 2, 2),
-  ('2024-03-01', 'En proceso', 3, 3),
-  ('2024-04-01', 'Rechazado', 4, 4),
-  ('2024-05-01', 'Aceptado', 5, 5),
-  ('2024-06-01', 'En proceso', 6, 6),
-  ('2024-07-01', 'Rechazado', 7, 7),
-  ('2024-08-01', 'Aceptado', 8, 8),
-  ('2024-09-01', 'En proceso', 9, 9),
-  ('2024-10-01', 'Rechazado', 10, 10);
+  ('2024-01-01', 'pendiente', 1, 1),
+  ('2024-02-01', 'enviado', 2, 2),
+  ('2024-03-01', 'por_recibir', 3, 3),
+  ('2024-04-01', 'entregado', 4, 4),
+  ('2024-05-01', 'cancelado', 5, 5),
+  ('2024-06-01', 'en_revision', 6, 6),
+  ('2024-07-01', 'en_revision', 7, 7),
+  ('2024-08-01', 'aceptado', 8, 8),
+  ('2024-09-01', 'aceptado', 9, 9),
+  ('2024-10-01', 'pendiente', 10, 10);
   SELECT * FROM devoluciones;
-  SELECT * FROM devoluciones WHERE estado_devolucion = 'Rechazado';
+  SELECT * FROM devoluciones WHERE estado_devolucion = 'por_recibir';
 
 
 
