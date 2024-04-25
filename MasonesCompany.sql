@@ -102,6 +102,7 @@ VALUES
   ('Sofía', 'Gómez', 'Hernández', 'Calle 8, 345', 'sofia.gomez@example.com', '666666666', 'Toni'),
   ('Lucía', 'Fernández', 'García', 'Calle 9, 678', 'lucia.fernandez@example.com', '777777777', 'Toni'),
   ('Jorge', 'López', 'Gómez', 'Calle 10, 901', 'jorge.lopez@example.com', '888888888', 'Toni');
+
 SELECT * FROM clientes;
 SELECT * FROM clientes WHERE apellido_1 LIKE '%García%' OR apellido_2 LIKE '%García%';
 UPDATE Clientes SET telefono = '555555555' WHERE correo = 'juan.perez@example.com';
@@ -119,6 +120,7 @@ VALUES
   ('Reproductor de música', 'Reproductor de música con almacenamiento de 64 GB', 150.50, 12, 6),
   ('Gafas de realidad virtual', 'Gafas de realidad virtual con pantalla de 5 pulgadas', 200.75, 8, 7),
   ('Tableta para niños', 'Tableta para niños con juegos educativos', 180.99, 15, 8);
+
 SELECT * FROM productos;
 SELECT SUM(precio) AS total_de_precios FROM productos;
 UPDATE Productos SET precio = 550.00 WHERE nombre = 'Televisor';
@@ -136,6 +138,7 @@ VALUES
   ('2024-08-01', 200.75, 'cancelado', 4),
   ('2024-09-01', 180.99, 'entregado', 8),
   ('2024-10-01', 250.00, 'aceptado', 9);
+
 SELECT * FROM pedidos;
 SELECT * FROM pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'aceptado';
 UPDATE Pedidos SET total_pedido = 1100.00, estado_pedido = 'aceptado' WHERE id_pedido = 1;
@@ -152,6 +155,7 @@ VALUES
   ('2024-08-01', 'aceptado', 8, 8),
   ('2024-09-01', 'aceptado', 9, 9),
   ('2024-10-01', 'pendiente', 10, 10);
+
   SELECT * FROM devoluciones;
   SELECT * FROM devoluciones WHERE estado_devolucion = 'por_recibir';
   UPDATE Devoluciones SET estado_devolucion = 'entregado' WHERE id_devolucion = 2;
@@ -168,7 +172,7 @@ VALUES
   (8, 8, 1, 200.00, 200.00),
   (9, 9, 2, 300.00, 600.00),
   (10, 10, 3, 100.00, 300.00),
-  (11, 11, 4, 200.00, 800.00);
+
   SELECT * FROM detallespedidos;
   SELECT subtotal FROM detallespedidos;
   UPDATE DetallesPedidos SET cantidad = 5 WHERE pedido_id = 2 AND producto_id = 2;
