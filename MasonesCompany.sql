@@ -73,7 +73,7 @@ CREATE TABLE DetallesPedidos (
   FOREIGN KEY (producto_id) REFERENCES Productos(id_producto) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO proveedores (nombre, correo, telefono, direccion)
+INSERT INTO Proveedores (nombre, correo, telefono, direccion)
 VALUES
   ( 'Samsung Electronics', 'samsung@example.com', '123456789', 'Calle 1, 123'),
   ( 'LG Electronics', 'lg@example.com', '987654321', 'Calle 2, 456'),
@@ -86,7 +86,7 @@ VALUES
   ( 'Toshiba Corporation', 'toshiba@example.com', '777777777', 'Calle 9, 678'),
   ( 'Lenovo Group', 'lenovo@example.com', '888888888', 'Calle 10, 901');
 
-SELECT * FROM proveedores;
+SELECT * FROM Proveedores;
 UPDATE Proveedores SET correo = 'newapple@example.com' WHERE nombre = 'Apple Inc.';
 UPDATE Proveedores SET direccion = 'Avenida 3, 789' WHERE nombre = 'LG Electronics';
 
@@ -103,7 +103,7 @@ VALUES
   ('Lucía', 'Fernández', 'García', 'Calle 9, 678', 'lucia.fernandez@example.com', '777777777', 'Toni'),
   ('Jorge', 'López', 'Gómez', 'Calle 10, 901', 'jorge.lopez@example.com', '888888888', 'Toni');
 
-SELECT * FROM clientes;
+SELECT * FROM Clientes;
 SELECT * FROM clientes WHERE apellido_1 LIKE '%García%' OR apellido_2 LIKE '%García%';
 UPDATE Clientes SET telefono = '555555555' WHERE correo = 'juan.perez@example.com';
 DELETE FROM Clientes WHERE apellido_2 = 'González';
@@ -121,7 +121,7 @@ VALUES
   ('Gafas de realidad virtual', 'Gafas de realidad virtual con pantalla de 5 pulgadas', 200.75, 8, 7),
   ('Tableta para niños', 'Tableta para niños con juegos educativos', 180.99, 15, 8);
 
-SELECT * FROM productos;
+SELECT * FROM Productos;
 SELECT SUM(precio) AS total_de_precios FROM productos;
 UPDATE Productos SET precio = 550.00 WHERE nombre = 'Televisor';
 UPDATE Productos SET stock = 20 WHERE descripción LIKE '%Laptop%';
@@ -139,8 +139,8 @@ VALUES
   ('2024-09-01', 180.99, 'entregado', 8),
   ('2024-10-01', 250.00, 'aceptado', 9);
 
-SELECT * FROM pedidos;
-SELECT * FROM pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'aceptado';
+SELECT * FROM Pedidos;
+SELECT * FROM Pedidos WHERE estado_pedido = 'pendiente' OR estado_pedido = 'aceptado';
 UPDATE Pedidos SET total_pedido = 1100.00, estado_pedido = 'aceptado' WHERE id_pedido = 1;
 
 INSERT INTO Devoluciones (fecha_devolucion, estado_devolucion, cliente, pedido)
@@ -156,8 +156,8 @@ VALUES
   ('2024-09-01', 'aceptado', 9, 9),
   ('2024-10-01', 'pendiente', 10, 10);
 
-  SELECT * FROM devoluciones;
-  SELECT * FROM devoluciones WHERE estado_devolucion = 'por_recibir';
+  SELECT * FROM Devoluciones;
+  SELECT * FROM Devoluciones WHERE estado_devolucion = 'por_recibir';
   UPDATE Devoluciones SET estado_devolucion = 'entregado' WHERE id_devolucion = 2;
 
   INSERT INTO DetallesPedidos (pedido_id, producto_id, cantidad, precio_unitario, subtotal)
@@ -173,7 +173,7 @@ VALUES
   (9, 9, 2, 300.00, 600.00),
   (10, 10, 3, 100.00, 300.00);
 
-  SELECT * FROM detallespedidos;
-  SELECT subtotal FROM detallespedidos;
+  SELECT * FROM DetallesPedidos;
+  SELECT subtotal FROM DetallesPedidos;
   UPDATE DetallesPedidos SET cantidad = 5 WHERE pedido_id = 2 AND producto_id = 2;
   DELETE FROM DetallesPedidos WHERE id_detalle_pedido = 3;
