@@ -171,7 +171,7 @@ VALUES
   (7, 7, 4, 100.00, 400.00),
   (8, 8, 1, 200.00, 200.00),
   (9, 9, 2, 300.00, 600.00),
-  (10, 10, 3, 100.00, 300.00),
+  (10, 10, 3, 100.00, 300.00);
 
   SELECT * FROM detallespedidos;
   SELECT subtotal FROM detallespedidos;
