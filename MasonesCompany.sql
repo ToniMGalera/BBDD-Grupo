@@ -90,7 +90,7 @@ SELECT * FROM proveedores;
 UPDATE Proveedores SET correo = 'newapple@example.com' WHERE nombre = 'Apple Inc.';
 UPDATE Proveedores SET direccion = 'Avenida 3, 789' WHERE nombre = 'LG Electronics';
 
-INSERT INTO Clientes (nombre, apellido_1, apellido_2, dirección, correo, telefono, responsable)
+INSERT INTO Clientes (nombre, apellido_1, apellido_2, direccion, correo, telefono, responsable)
 VALUES
   ('Juan', 'Pérez', 'González', 'Calle 1, 123', 'juan.perez@example.com', '123456789', 'Toni'),
   ('María', 'García', 'Hernández', 'Calle 2, 456', 'maria.garcia@example.com', '987654321', 'Toni'),
@@ -108,7 +108,7 @@ SELECT * FROM clientes WHERE apellido_1 LIKE '%García%' OR apellido_2 LIKE '%Ga
 UPDATE Clientes SET telefono = '555555555' WHERE correo = 'juan.perez@example.com';
 DELETE FROM Clientes WHERE apellido_2 = 'González';
 
-INSERT INTO Productos (nombre, descripción, precio, stock, proveedor)
+INSERT INTO Productos (nombre, descripcion, precio, stock, proveedor)
 VALUES
   ('Televisor', 'Televisor 4K', 500.00, 10, 1),
   ('Laptop', 'Laptop de 15 pulgadas', 800.50, 5, 2),
